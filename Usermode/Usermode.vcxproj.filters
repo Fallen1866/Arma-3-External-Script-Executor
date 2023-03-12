@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\mem">
+      <UniqueIdentifier>{b5fd76dc-1306-42b7-b11f-9c5540e11498}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\modules">
+      <UniqueIdentifier>{48002255-c64e-4e5f-9c20-5fba2cfb181f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\log">
+      <UniqueIdentifier>{eace47e5-00b3-4cf7-ad88-9d7c4583d136}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sdk">
+      <UniqueIdentifier>{4706ae9e-01b4-4cd7-8abc-07c746303bf7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\exec">
+      <UniqueIdentifier>{4c533948-3077-4a16-bf8e-80bedd7f3b04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\exec\rscdisplay">
+      <UniqueIdentifier>{008b60c9-c631-40fe-80fd-ac2cf59d61e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\structs">
+      <UniqueIdentifier>{ebbb1a37-0e79-4fac-8e24-db87ad840473}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Usermode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mem.cpp">
+      <Filter>Header Files\mem</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk.cpp">
+      <Filter>Header Files\sdk</Filter>
+    </ClCompile>
+    <ClCompile Include="modules.cpp">
+      <Filter>Header Files\modules</Filter>
+    </ClCompile>
+    <ClCompile Include="executor.cpp">
+      <Filter>Source Files\exec</Filter>
+    </ClCompile>
+    <ClCompile Include="rscdisplay.cpp">
+      <Filter>Source Files\exec\rscdisplay</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="mem.h">
+      <Filter>Header Files\mem</Filter>
+    </ClInclude>
+    <ClInclude Include="includes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk.h">
+      <Filter>Header Files\sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="modules.h">
+      <Filter>Header Files\modules</Filter>
+    </ClInclude>
+    <ClInclude Include="log.h">
+      <Filter>Header Files\log</Filter>
+    </ClInclude>
+    <ClInclude Include="executor.h">
+      <Filter>Source Files\exec</Filter>
+    </ClInclude>
+    <ClInclude Include="rscdisplay.h">
+      <Filter>Source Files\exec\rscdisplay</Filter>
+    </ClInclude>
+    <ClInclude Include="structs.h">
+      <Filter>Header Files\structs</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
