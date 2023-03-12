@@ -159,7 +159,7 @@ bool RscDisplay::PlacePayloadOnLoad(std::string Payload) {
 	UINT64 StringStart = StringEntry + 0x10;
 	UINT64 StringEnd = StringStart + OrigOnLoad.size();
 
-	std::string TruePayload = '\x3B' + Payload;
+	std::string TruePayload = '\x3B' + Payload + '\x90';
 	const char* TruePayloadString = TruePayload.c_str();
 
 	if (!CacheOverwrittenOnLoad(TruePayload.size())) {
