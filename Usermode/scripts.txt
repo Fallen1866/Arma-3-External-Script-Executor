@@ -1,0 +1,42 @@
+comment "Remove existing items";
+removeAllWeapons player;
+removeAllItems player;
+removeAllAssignedItems player;
+removeUniform player;
+removeVest player;
+removeBackpack player;
+removeHeadgear player;
+removeGoggles player;
+
+comment "Add weapons";
+player addWeapon "srifle_DMR_03_F";
+player addPrimaryWeaponItem "optic_Arco_blk_F";
+player addPrimaryWeaponItem "20Rnd_762x51_Mag";
+player addPrimaryWeaponItem "bipod_01_F_blk";
+player addWeapon "hgun_Rook40_snds_F";
+player addHandgunItem "muzzle_snds_L";
+player addHandgunItem "16Rnd_9x21_Mag";
+
+comment "Add containers";
+player forceAddUniform "U_O_R_Gorka_01_F";
+player addVest "V_Chestrig_rgr";
+player addBackpack "B_FieldPack_oli";
+
+comment "Add binoculars";
+player addWeapon "Binocular";
+
+comment "Add items to containers";
+for "_i" from 1 to 2 do {player addItemToUniform "20Rnd_762x51_Mag";};
+for "_i" from 1 to 5 do {player addItemToVest "FirstAidKit";};
+for "_i" from 1 to 8 do {player addItemToVest "20Rnd_762x51_Mag";};
+for "_i" from 1 to 2 do {player addItemToBackpack "FirstAidKit";};
+for "_i" from 1 to 9 do {player addItemToBackpack "20Rnd_762x51_Mag";};
+player addHeadgear "H_Booniehat_khk";
+
+comment "Add items";
+player linkItem "ItemMap";
+player linkItem "ItemCompass";
+player linkItem "ItemWatch";
+player linkItem "ItemRadio";
+player linkItem "ItemGPS";
+player linkItem "NVGoggles_OPFOR";

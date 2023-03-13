@@ -1,6 +1,8 @@
 #include "includes.h"
 #include "sdk.h"
-#include "rscdisplay.h"
+#include "executor.h"
+
+
 
 int main() {
 	if (!coms->SetupInterface("arma3_x64.exe")) {
@@ -19,13 +21,11 @@ int main() {
 
 	if (!SDK->InitComps())
 		return -3;
-
-	auto* GameOptionDisplay = RscDisplayManager->GetDisplayFromName("RscDisplayGameOptions");
-
-	GameOptionDisplay->PlacePayloadOnLoad("hint \"Hi this a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long text to see if it patches it self after\"\x3B");
 	
+	Executor->PlaceScript();
+
 	while (!GetAsyncKeyState(VK_END))
-		Sleep(500);
-	
-	GameOptionDisplay->RemovePayloadOnLoad();
+		Sleep(250);
+
+	Executor->RemoveScript();
 }
