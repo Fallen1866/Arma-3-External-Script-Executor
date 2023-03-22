@@ -16,8 +16,6 @@ public:
 
 	void Init(UINT64 Base);
 	
-
-
 	~RscDisplayTrait() {}
 	RscDisplayTrait() {}
 };
@@ -81,8 +79,6 @@ public:
 	std::vector<std::string> GetAllDisplayNames();
 	std::vector<RscDisplay*> GetAllDisplays();
 	RscDisplay* GetDisplayFromName(std::string DisplayName);
-
-
 
 	void DebugAllDisplays();
 

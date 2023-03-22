@@ -153,8 +153,6 @@ bool RscDisplay::PlacePayloadOnLoad(std::string Payload) {
 		return false;
 	}
 
-	Log("Placing Payload -> 0x%llx \n", OnLoad->Get());
-
 	UINT64 StringEntry = coms->Read<UINT64>(OnLoad->Get() + 0x10);
 	UINT64 StringStart = StringEntry + 0x10;
 	UINT64 StringEnd = StringStart + OrigOnLoad.size();

@@ -30,6 +30,12 @@
     <Filter Include="Header Files\structs">
       <UniqueIdentifier>{ebbb1a37-0e79-4fac-8e24-db87ad840473}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\variables">
+      <UniqueIdentifier>{e5fb418d-1fb5-4944-8465-0c6acdfb4367}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\scheduler">
+      <UniqueIdentifier>{af4cfd4e-3b43-41c3-9521-45e67a3703e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Usermode.cpp">
@@ -49,6 +55,18 @@
     </ClCompile>
     <ClCompile Include="rscdisplay.cpp">
       <Filter>Source Files\exec\rscdisplay</Filter>
+    </ClCompile>
+    <ClCompile Include="input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="scheduler.cpp">
+      <Filter>Source Files\scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="scriptvm.cpp">
+      <Filter>Header Files\variables</Filter>
+    </ClCompile>
+    <ClCompile Include="log.cpp">
+      <Filter>Header Files\log</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -75,6 +93,21 @@
     </ClInclude>
     <ClInclude Include="structs.h">
       <Filter>Header Files\structs</Filter>
+    </ClInclude>
+    <ClInclude Include="input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="scheduler.h">
+      <Filter>Source Files\scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="variable.h">
+      <Filter>Header Files\variables</Filter>
+    </ClInclude>
+    <ClInclude Include="codevariable.h">
+      <Filter>Header Files\variables</Filter>
+    </ClInclude>
+    <ClInclude Include="scriptvm.h">
+      <Filter>Header Files\variables</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

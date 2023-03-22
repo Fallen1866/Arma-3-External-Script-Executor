@@ -5,7 +5,7 @@
 KernelInterface* coms = new KernelInterface();
 
 // kernel shit if you want.
-; DWORD KernelInterface::InternalGetProcessID(const char* Target) {
+DWORD KernelInterface::InternalGetProcessID(const char* Target) {
 	HANDLE hSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
 
 	if (hSnap == INVALID_HANDLE_VALUE) {
@@ -28,7 +28,21 @@ KernelInterface* coms = new KernelInterface();
 	return 0;
 }
 
+bool KernelInterface::InitHook()
+{
+	LoadLibraryA("user32.dll");
 
+	static const auto win32u = LoadLibraryA("win32u.dll");
+
+	NtGdiFlush = (t_NtGdiFlush*)GetProcAddress(win32u, "NtGdiFlush");
+
+	return NtGdiFlush;
+}
+
+void KernelInterface::CallHook(ComPacket* packet)
+{
+	NtGdiFlush((void*)packet);
+}
 
 #else
 

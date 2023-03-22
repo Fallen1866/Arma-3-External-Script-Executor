@@ -10,160 +10,161 @@
 #define USERMODE 0
 #define KERNEL   1
 
-#define TYPE KERNEL
+#define TYPE USERMODE
 
 #if TYPE
-typedef struct _KERNEL_MEMORY_REQUEST {
-	ULONG request_type;
-	ULONG pid;
-	PVOID source;
-	PVOID buffer;
-	SIZE_T size;
-	const char* module_name;
-	UINT64 overlay_info;
-} KERNEL_MEMORY_REQUEST, * PKERNEL_MEMORY_REQUEST;
 
-#define STANDARD_COM_KEY 0x691337
-#define SECURITY_TOKEN 0xDEADBEEF
-#define STREAM_UNLOCK 0x103
-#define STREAMED_UNLOCK_KEY 0x5183
-#define READ 0xFACC
-#define WRITE 0xBACF
-#define MODULE_BASE 0xEAC
-#define PROCESS_BASE 0xBE
-#define USERMODE_PROCESS_SET 0xDECL
-#define UNLOAD_HOOK 0xDA
-#define INIT_BE_HOOK 0xD5
-#define IS_ACTIVE 0x5837A
-#define ACTIVATE_OVERLAY_PROTECTION 0x01041
+struct ComPacket
+{
+	const UINT32 key = 0x187;
 
-// KERNEL
+	enum Type
+	{
+		baseAddress,
+		write,
+		protectVirtualMemory,
+		isLoaded
+	} type;
+
+	bool sucsess = false;
+};
+
+struct BaseAddressPacket : ComPacket
+{
+	wchar_t moduleName[0x100];
+	UINT32 targetPID = 0;
+	UINT64 moduleBase = 0;
+	UINT64 moduleSize = 0;
+};
+
+struct WritePacket : ComPacket
+{
+	UINT32 sourcePID = 0;
+	UINT32 targetPID = 0;
+	PVOID sourceAddr = 0;
+	PVOID targetAddr = 0;
+	SIZE_T size = 0;
+};
+
+struct ProtectVirtualMemoryPacket : ComPacket
+{
+	UINT32  targetPID = 0;
+	PVOID   address = 0;
+	SIZE_T  size = 0;
+	ULONG   newAccessProtection;
+	ULONG   oldAccessProtection;
+};
+
+typedef UINT32 t_NtGdiFlush(void* ComPacket);
+static t_NtGdiFlush* NtGdiFlush = nullptr;
+
 class KernelInterface {
-	DWORD m_Pid;
-
-	// Driver Needed Stuff
-	uintptr_t(__stdcall* DriverFunction)(int unlock, PKERNEL_MEMORY_REQUEST buffer_pointer);
-	int Commkey = 0x691337;
-	bool ZwQueryHook;
+private:
+	DWORD m_PID = -1;
 
 	DWORD InternalGetProcessID(const char* Target);
-	
 
+private:
+	void CallHook(ComPacket* packet);
 
-	bool InitBypass() {
-		LoadLibraryA("user32.dll");
-		void* hooked_function = GetProcAddress(LoadLibraryA("win32u.dll"), "NtGdiGetStats");
-
-		if (hooked_function) {
-			*(void**)&DriverFunction = static_cast<int(_stdcall*)()>(hooked_function);
-
-			KERNEL_MEMORY_REQUEST unlock = {};
-			unlock.pid = unlock.pid = 0X1337;
-
-			Commkey = DriverFunction(Commkey, &unlock);
-
-			KERNEL_MEMORY_REQUEST unlock_driver_buffer = {};
-			unlock_driver_buffer.request_type = STREAM_UNLOCK;
-			unlock_driver_buffer.buffer = (PVOID)STREAMED_UNLOCK_KEY;
-
-			DriverFunction(Commkey, &unlock_driver_buffer);
-
-			unlock_driver_buffer.request_type = USERMODE_PROCESS_SET;
-			unlock_driver_buffer.buffer = &ZwQueryHook;
-			unlock_driver_buffer.pid = GetCurrentProcessId();
-
-			DriverFunction(Commkey, &unlock_driver_buffer);
-
-			unlock_driver_buffer.request_type = IS_ACTIVE;
-			unlock_driver_buffer.buffer = 0;
-
-
-			if (DriverFunction(Commkey, &unlock_driver_buffer) == IS_ACTIVE)
-				return true;
-		}
-
-		return false;
-	}
+public:
+	bool InitHook();
 
 public:
 	template<typename T>
-	void Write(UINT64 Address, T Buffer) {
-		KERNEL_MEMORY_REQUEST request = { 0 };
-		request.request_type = WRITE;
-		request.pid = m_Pid;
-		request.source = (PVOID)Address;
-		request.buffer = &Buffer;
-		request.size = sizeof(T);
+	T Read(UINT64 Address) {
+		T Buffer = {};
+		
+		static auto CurrentProcessID = GetCurrentProcessId();
 
-		DriverFunction(Commkey, &request);
+		WritePacket Request = {};
+
+		Request.type = ComPacket::Type::write;
+		Request.targetPID = CurrentProcessID;
+		Request.targetAddr = &Buffer;
+		Request.sourcePID = m_PID;
+		Request.sourceAddr = (PVOID)Address;
+		Request.size = sizeof(T);
+
+		CallHook((ComPacket*)&Request);
+
+		return Buffer;
 	}
 
 	template<typename T>
-	T Read(UINT64 Address) {
-		T buffer = {};
-		KERNEL_MEMORY_REQUEST request = { 0 };
-		request.request_type = READ;
-		request.pid = m_Pid;
-		request.source = (PVOID)Address;
-		request.buffer = &buffer;
-		request.size = sizeof(T);
+	void Write(UINT64 Address, T Buffer) {
+		static auto CurrentProcessID = GetCurrentProcessId();
 
-		DriverFunction(Commkey, &request);
+		WritePacket Request = {};
 
-		return buffer;
+		Request.type = ComPacket::Type::write;
+		Request.sourcePID = CurrentProcessID;
+		Request.sourceAddr = &Buffer;
+		Request.targetPID = m_PID;
+		Request.targetAddr = (PVOID)Address;
+		Request.size = sizeof(T);
+
+		CallHook((ComPacket*)&Request);
 	}
 
 	bool ReadBuffer(UINT64 Address, SIZE_T Size, PVOID Buffer) {
-		_KERNEL_MEMORY_REQUEST request = { 0 };
-		request.request_type = READ;
-		request.pid = m_Pid;
-		request.source = (PVOID)Address;
-		request.buffer = (PVOID)Buffer;
-		request.size = Size;
+		static auto CurrentProcessID = GetCurrentProcessId();
 
-		DriverFunction(Commkey, &request);
+		WritePacket Request = {};
 
-		return true;
+		Request.type = ComPacket::Type::write;
+		Request.targetPID = CurrentProcessID;
+		Request.targetAddr = Buffer;
+		Request.sourcePID = m_PID;
+		Request.sourceAddr = (PVOID)Address;
+		Request.size = Size;
+
+		CallHook((ComPacket*)&Request);
+
+		return Request.sucsess;
 	}
 
 	std::string ReadString(UINT64 Address, SIZE_T Size) {
-		if (Size <= 0)
-			return "";
+		char* StringBuffer = new char[Size + 1];
+		StringBuffer[Size] = '\x00';
 
-		const char* buffer = new char[Size];
-		ReadBuffer(Address, Size, (PVOID)buffer);
+		ReadBuffer(Address, Size, StringBuffer);
 
-		std::string ret = std::string(buffer);
-
-		delete[] buffer;
-		return ret;
+		std::string Buffer = std::string(StringBuffer);
+		delete[] StringBuffer;	// keine memory leak bitte.
+		return Buffer;
 	}
 
 	UINT64 GetModuleBase(const char* ModuleName) {
-		KERNEL_MEMORY_REQUEST request = {};
+		BaseAddressPacket packet;
 
-		request.request_type = MODULE_BASE;
-		request.pid = m_Pid;
-		request.module_name = ModuleName;
+		packet.type = ComPacket::Type::baseAddress;
+		packet.targetPID = m_PID;
 
-		return DriverFunction(Commkey, &request);
+		const size_t cSize = strlen(ModuleName) + 1;
+		wchar_t* wString = new wchar_t[cSize];
+		mbstowcs(wString, ModuleName, cSize);
+
+		wcscpy_s(packet.moduleName, 256, wString);
+
+		delete[] wString;
+
+		CallHook(((ComPacket*)&packet));
+
+		return packet.moduleBase;
 	}
 
 	bool SetupInterface(const char* TargetApplication) {
-		if (!InitBypass()) {
-			LogFailure("Failed to setup bypass \n");
-			return false;
-		}
-
 		while (true) {
-			if (m_Pid = InternalGetProcessID(TargetApplication))
-				return true;
+			if (m_PID = InternalGetProcessID(TargetApplication))
+				return InitHook();
 
 			Sleep(250);
 		}
 	}
 
 };
+
 
 extern KernelInterface* coms;
 
