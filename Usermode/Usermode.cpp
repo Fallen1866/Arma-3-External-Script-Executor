@@ -1,8 +1,9 @@
 #include "includes.h"
 #include "sdk.h"
+#include "hook.h"
 #include "executor.h"
 #include "scheduler.h"
-
+#include "eventhandler.h"
 
 int main() {
 	if (!coms->SetupInterface("arma3_x64.exe")) {
@@ -23,40 +24,16 @@ int main() {
 		LogFailure("Failed to setup Components \n");
 		return -3;
 	}
-	
-	auto Scripts = ScheduleManager->GetAllScripts();
-	
-	//for (int i = 0; i < Scripts.size(); i++)
-	//	logger::WriteLogFile(std::string(std::to_string(i) + ".txt").c_str(), Scripts[i]->GetScript().c_str());
 
-	if (Executor->PlaceScript())
-		LogSuccess("Placed Script \n");
 	
-	while (!GetAsyncKeyState(VK_END)) {
-		Sleep(100);
-	}
-	
-	if (Executor->RemoveScript())
-		LogSuccess("Successfully cleaned up \n");
+	UINT64 BinaryOperator = coms->Read<UINT64>(SDK->GetModuleBase() + 0x2565150);
 
-	getchar();
-
-	//if (ScheduleManager->KillAllScripts())
-	//	LogSuccess("Killed all scripts \n");
-	//else
-	//	LogFailure("Failed to kill all scripts \n");
-
-	/*
-	if (Executor->PlaceScript()) {
-		LogSuccess("Sucessfully Placed Script \n");
+	const auto AllocatedMemory = coms->AllocateMemory(0x100);
 	
-		while (!GetAsyncKeyState(VK_END))
-			Sleep(250);
 	
-		if (Executor->RemoveScript())
-			LogSuccess("Sucessfully Removed Script \n");
-	}
-	else
-		LogFailure("Failure Placing Script \n");
-	*/
+
+	//Log("Allocated Memory -> 0x%llx \n", AllocatedMemory);
+	//
+	//coms->Write<UINT64>(AllocatedMemory, 0xFFDEADFFDEADFF);
 }
+

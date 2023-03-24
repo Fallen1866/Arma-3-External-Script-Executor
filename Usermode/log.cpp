@@ -18,7 +18,7 @@ void logger::CreateLogFile(const char* LogFile) {
 }
 
 bool logger::CheckLogExist(const char* LogName) {
-	
+	return false;
 }
 
 bool logger::WriteLogEntry(const char* String) {

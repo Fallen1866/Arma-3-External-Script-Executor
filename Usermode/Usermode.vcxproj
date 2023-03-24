@@ -102,7 +102,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -128,22 +128,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="cave.cpp" />
+    <ClCompile Include="eventhandler.cpp" />
     <ClCompile Include="executor.cpp" />
-    <ClCompile Include="input.cpp" />
+    <ClCompile Include="hook.cpp" />
     <ClCompile Include="log.cpp" />
     <ClCompile Include="mem.cpp" />
     <ClCompile Include="modules.cpp" />
+    <ClCompile Include="pattern.cpp" />
+    <ClCompile Include="pe.cpp" />
     <ClCompile Include="rscdisplay.cpp" />
+    <ClCompile Include="rtti.cpp" />
     <ClCompile Include="scriptvm.cpp" />
     <ClCompile Include="sdk.cpp" />
     <ClCompile Include="scheduler.cpp" />
     <ClCompile Include="Usermode.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cave.h" />
     <ClInclude Include="codevariable.h" />
+    <ClInclude Include="eventhandler.h" />
     <ClInclude Include="executor.h" />
+    <ClInclude Include="hook.h" />
     <ClInclude Include="includes.h" />
-    <ClInclude Include="input.h" />
+    <ClInclude Include="pattern.h" />
+    <ClInclude Include="pe.h" />
+    <ClInclude Include="rtti.h" />
     <ClInclude Include="scriptvm.h" />
     <ClInclude Include="structs.h" />
     <ClInclude Include="log.h" />

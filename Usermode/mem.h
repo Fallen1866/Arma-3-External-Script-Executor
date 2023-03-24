@@ -3,9 +3,9 @@
 
 #include "includes.h"
 #include <TlHelp32.h>
-#include <Windows.h>
-#include "log.h"
 #include <iostream>
+#include <Windows.h>
+#pragma comment(lib, "onecore.lib")
 
 #define USERMODE 0
 #define KERNEL   1
@@ -205,6 +205,10 @@ public:
 		std::string Buffer = std::string(StringBuffer);
 		delete[] StringBuffer;	// keine memory leak bitte.
 		return Buffer;
+	}
+
+	UINT64 AllocateMemory(SIZE_T Size = 0x30, ULONG AllocFlags = MEM_COMMIT | MEM_RESERVE, ULONG PageProtect = PAGE_EXECUTE_READWRITE) {
+		return (UINT64)VirtualAlloc2(m_hProc, nullptr, Size, AllocFlags, PageProtect, nullptr, 0);
 	}
 
 	UINT64 GetModuleBase(const char* ModuleName) {

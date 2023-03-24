@@ -36,6 +36,24 @@
     <Filter Include="Source Files\scheduler">
       <UniqueIdentifier>{af4cfd4e-3b43-41c3-9521-45e67a3703e4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\pe">
+      <UniqueIdentifier>{331d6133-4f0b-443e-a9ab-45bec4f70385}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\cave">
+      <UniqueIdentifier>{29bee018-fadf-4666-9164-d0c678a17737}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\rtti">
+      <UniqueIdentifier>{35811030-3ef9-4884-84e1-e9b2f11694da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\pattern">
+      <UniqueIdentifier>{53502453-1ba6-4b56-afb6-492cd84cb0f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\eventhandler">
+      <UniqueIdentifier>{2a4681e7-c05d-4bd1-90cf-a1459f94aca3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\hook">
+      <UniqueIdentifier>{792d951d-41d0-4156-abf2-74b5fe61405b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Usermode.cpp">
@@ -56,9 +74,6 @@
     <ClCompile Include="rscdisplay.cpp">
       <Filter>Source Files\exec\rscdisplay</Filter>
     </ClCompile>
-    <ClCompile Include="input.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="scheduler.cpp">
       <Filter>Source Files\scheduler</Filter>
     </ClCompile>
@@ -67,6 +82,24 @@
     </ClCompile>
     <ClCompile Include="log.cpp">
       <Filter>Header Files\log</Filter>
+    </ClCompile>
+    <ClCompile Include="pe.cpp">
+      <Filter>Header Files\pe</Filter>
+    </ClCompile>
+    <ClCompile Include="cave.cpp">
+      <Filter>Header Files\cave</Filter>
+    </ClCompile>
+    <ClCompile Include="rtti.cpp">
+      <Filter>Header Files\rtti</Filter>
+    </ClCompile>
+    <ClCompile Include="pattern.cpp">
+      <Filter>Header Files\pattern</Filter>
+    </ClCompile>
+    <ClCompile Include="eventhandler.cpp">
+      <Filter>Source Files\eventhandler</Filter>
+    </ClCompile>
+    <ClCompile Include="hook.cpp">
+      <Filter>Header Files\hook</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -94,9 +127,6 @@
     <ClInclude Include="structs.h">
       <Filter>Header Files\structs</Filter>
     </ClInclude>
-    <ClInclude Include="input.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="scheduler.h">
       <Filter>Source Files\scheduler</Filter>
     </ClInclude>
@@ -108,6 +138,24 @@
     </ClInclude>
     <ClInclude Include="scriptvm.h">
       <Filter>Header Files\variables</Filter>
+    </ClInclude>
+    <ClInclude Include="pe.h">
+      <Filter>Header Files\pe</Filter>
+    </ClInclude>
+    <ClInclude Include="cave.h">
+      <Filter>Header Files\cave</Filter>
+    </ClInclude>
+    <ClInclude Include="rtti.h">
+      <Filter>Header Files\rtti</Filter>
+    </ClInclude>
+    <ClInclude Include="pattern.h">
+      <Filter>Header Files\pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="eventhandler.h">
+      <Filter>Source Files\eventhandler</Filter>
+    </ClInclude>
+    <ClInclude Include="hook.h">
+      <Filter>Header Files\hook</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

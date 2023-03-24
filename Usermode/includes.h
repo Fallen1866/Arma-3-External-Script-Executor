@@ -6,4 +6,3 @@
 
 #include "mem.h"
 #include "log.h"
-#include "input.h"
