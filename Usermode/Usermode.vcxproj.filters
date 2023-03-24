@@ -54,6 +54,9 @@
     <Filter Include="Header Files\hook">
       <UniqueIdentifier>{792d951d-41d0-4156-abf2-74b5fe61405b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\sqf">
+      <UniqueIdentifier>{90865ae6-fa24-44d6-a6a9-d653143febc7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Usermode.cpp">
@@ -100,6 +103,9 @@
     </ClCompile>
     <ClCompile Include="hook.cpp">
       <Filter>Header Files\hook</Filter>
+    </ClCompile>
+    <ClCompile Include="sqf.cpp">
+      <Filter>Source Files\sqf</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -156,6 +162,9 @@
     </ClInclude>
     <ClInclude Include="hook.h">
       <Filter>Header Files\hook</Filter>
+    </ClInclude>
+    <ClInclude Include="sqf.h">
+      <Filter>Source Files\sqf</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

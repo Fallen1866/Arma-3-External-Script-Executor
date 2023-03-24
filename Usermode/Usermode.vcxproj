@@ -142,6 +142,7 @@
     <ClCompile Include="scriptvm.cpp" />
     <ClCompile Include="sdk.cpp" />
     <ClCompile Include="scheduler.cpp" />
+    <ClCompile Include="sqf.cpp" />
     <ClCompile Include="Usermode.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -155,6 +156,7 @@
     <ClInclude Include="pe.h" />
     <ClInclude Include="rtti.h" />
     <ClInclude Include="scriptvm.h" />
+    <ClInclude Include="sqf.h" />
     <ClInclude Include="structs.h" />
     <ClInclude Include="log.h" />
     <ClInclude Include="mem.h" />

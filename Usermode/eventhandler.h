@@ -13,8 +13,6 @@ enum HandlerType {
 	PLAYERUI,
 	UI,
 	MUSIC,
-
-		// Just making a dumper for all SQF stuff. - Can't speak no more :/
 };
 
 class EventHandlerSerialized {

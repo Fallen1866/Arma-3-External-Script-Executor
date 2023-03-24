@@ -1,6 +1,7 @@
 #include "sdk.h"
 #include "rscdisplay.h"
 #include "scheduler.h"
+#include "sqf.h"
 
 SDKComponent* SDK = new SDKComponent();
 
@@ -25,6 +26,7 @@ bool SDKComponent::InitSDK() {
 bool SDKComponent::InitComps() {
 	RscDisplayManager->Init(SDK->GetRscDisplayEntry());
 	ScheduleManager->Init(SDK->GetSchedulerEntry());
+	SQFInterface->Init();
 
 	return true;
 }
