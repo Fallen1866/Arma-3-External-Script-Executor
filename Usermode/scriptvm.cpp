@@ -1,5 +1,11 @@
 #include "scriptvm.h"
 
+bool ScriptVM::ToggleScript() {
+	Log("Toggelign Script -> 0x%p \n", this);
+	coms->Write<bool>((UINT64)(this) + 0x508, IsTerminated());
+	return IsTerminated();
+}
+
 bool ScriptVM::TerminateScript() {
 	coms->Write<UINT8>((UINT64)(this) + 0x508, 0x00);
 	return IsTerminated();

@@ -197,6 +197,9 @@ public:
 	}
 
 	std::string ReadString(UINT64 Address, SIZE_T Size) {
+		if (Size > 0xFFFF)
+			return "";
+
 		char* StringBuffer = new char[Size + 1];
 		StringBuffer[Size] = '\x00';
 

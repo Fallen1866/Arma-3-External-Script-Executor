@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,9 +130,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="cave.cpp" />
+    <ClCompile Include="CodeEditor\TextEditor.cpp" />
     <ClCompile Include="eventhandler.cpp" />
     <ClCompile Include="executor.cpp" />
     <ClCompile Include="hook.cpp" />
+    <ClCompile Include="imgui\imgui.cpp" />
+    <ClCompile Include="imgui\imgui_demo.cpp" />
+    <ClCompile Include="imgui\imgui_draw.cpp" />
+    <ClCompile Include="imgui\imgui_impl_dx11.cpp" />
+    <ClCompile Include="imgui\imgui_impl_win32.cpp" />
+    <ClCompile Include="imgui\imgui_tables.cpp" />
+    <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="log.cpp" />
     <ClCompile Include="mem.cpp" />
     <ClCompile Include="modules.cpp" />
@@ -143,14 +152,26 @@
     <ClCompile Include="sdk.cpp" />
     <ClCompile Include="scheduler.cpp" />
     <ClCompile Include="sqf.cpp" />
+    <ClCompile Include="tab.cpp" />
     <ClCompile Include="Usermode.cpp" />
+    <ClCompile Include="vardumper.cpp" />
+    <ClCompile Include="variable.cpp" />
+    <ClCompile Include="window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cave.h" />
-    <ClInclude Include="codevariable.h" />
+    <ClInclude Include="CodeEditor\TextEditor.h" />
     <ClInclude Include="eventhandler.h" />
     <ClInclude Include="executor.h" />
     <ClInclude Include="hook.h" />
+    <ClInclude Include="imgui\imconfig.h" />
+    <ClInclude Include="imgui\imgui.h" />
+    <ClInclude Include="imgui\imgui_impl_dx11.h" />
+    <ClInclude Include="imgui\imgui_impl_win32.h" />
+    <ClInclude Include="imgui\imgui_internal.h" />
+    <ClInclude Include="imgui\imstb_rectpack.h" />
+    <ClInclude Include="imgui\imstb_textedit.h" />
+    <ClInclude Include="imgui\imstb_truetype.h" />
     <ClInclude Include="includes.h" />
     <ClInclude Include="pattern.h" />
     <ClInclude Include="pe.h" />
@@ -164,7 +185,10 @@
     <ClInclude Include="rscdisplay.h" />
     <ClInclude Include="sdk.h" />
     <ClInclude Include="scheduler.h" />
+    <ClInclude Include="tab.h" />
+    <ClInclude Include="vardumper.h" />
     <ClInclude Include="variable.h" />
+    <ClInclude Include="window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

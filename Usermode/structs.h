@@ -16,6 +16,11 @@ public:
 		return (T)(m_ArrayEntry + (index * offset));
 	}
 
+	template<typename T>
+	T GetAddr(int index, int offset) {
+		return (T)(m_ArrayEntry + (index * offset));
+	}
+
 	bool InvalidList(unsigned __int32 MaxSize = 0x9999) {
 		return MaxSize < m_ArrayCount;
 	}

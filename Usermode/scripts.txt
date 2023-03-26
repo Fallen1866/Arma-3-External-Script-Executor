@@ -40,3 +40,4 @@ player linkItem "ItemWatch";
 player linkItem "ItemRadio";
 player linkItem "ItemGPS";
 player linkItem "NVGoggles_OPFOR";
+

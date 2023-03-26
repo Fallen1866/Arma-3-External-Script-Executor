@@ -2,6 +2,8 @@
 #include "rscdisplay.h"
 #include "scheduler.h"
 #include "sqf.h"
+#include "executor.h"
+#include "vardumper.h"
 
 SDKComponent* SDK = new SDKComponent();
 
@@ -11,6 +13,7 @@ void SDKComponent::DebugInfo() {
 	LogInfo("RscDisplay \t-> 0x%llx \n", SDK->GetRscDisplayEntry());
 	LogInfo("Scheduler  \t-> 0x%llx \n", SDK->GetSchedulerEntry());
 	LogInfo("CameraOn	\t-> 0x%llx \n", SDK->GetCameraOn());
+	LogInfo("MissionNS  \t-> 0x%llx \n", SDK->GetMissionNamespace());
 }
 
 bool SDKComponent::InitSDK() {
@@ -19,14 +22,17 @@ bool SDKComponent::InitSDK() {
 	m_RscDisplayArray	= coms->Read<UINT64>(m_Modbase + 0x233F468);	// RscDisplay.
 	m_Scheduler			= m_World + 0x1858;
 	m_CameraOn			= coms->Read<UINT64>(coms->Read<UINT64>(m_World + 0x2B00) + 0x8);
+	m_MissionNamespace	= coms->Read<UINT64>(m_World + 0x1630);
 
 	return m_Modbase;
 } 
 
 bool SDKComponent::InitComps() {
+	Executor->Init();
 	RscDisplayManager->Init(SDK->GetRscDisplayEntry());
 	ScheduleManager->Init(SDK->GetSchedulerEntry());
 	SQFInterface->Init();
+	VariableManager->Init(SDK->GetMissionNamespace());
 
 	return true;
 }

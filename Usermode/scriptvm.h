@@ -4,8 +4,11 @@
 
 class ScriptVM {
 public:
+	bool ToggleScript();// return current state
+
 	bool TerminateScript();
 	bool IsTerminated();
+
 
 	std::string GetParentScript();
 	std::string GetScript();

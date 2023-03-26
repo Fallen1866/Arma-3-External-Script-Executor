@@ -2,6 +2,7 @@
 #include "includes.h"
 #include "scriptvm.h"
 #include "structs.h"
+#include "tab.h"
 
 // - - - Code that is not scheduled.
 // - Debug Console
@@ -31,8 +32,11 @@
 // 0x490 Script Parent		String
 // 0x4E8 Namespace			Pointer
 
-class ScheduleComponent {
+class ScheduleComponent : public MenuTab {
 	UINT64 m_Base = 0;
+
+	TextEditor SQFCodeEditor;
+
 
 public:
 	void Update();
@@ -41,10 +45,23 @@ public:
 
 	bool KillAllScripts();
 
-	void Init(UINT64 Base) { m_Base = Base; }
+	void Init(UINT64 Base) { 
+		m_Base = Base; 
+		
+		SQFCodeEditor.SetLanguageDefinition(TextEditor::LanguageDefinition::SQF());
+		SQFCodeEditor.SetReadOnly(true);
+
+		MenuTab::Init(); 
+	}
+	void RenderMenu() override;
+	
+	// SCHEDULE - SHDL
+	const char* GetTitle() override { return "SCHL"; }
+
+	
 
 	~ScheduleComponent() {}
-	ScheduleComponent() {}
+	ScheduleComponent(int Index) : MenuTab(Index) {}
 };
 
 extern ScheduleComponent* ScheduleManager;

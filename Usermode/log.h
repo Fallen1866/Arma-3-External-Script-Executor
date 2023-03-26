@@ -23,4 +23,5 @@ namespace logger {
 	bool CheckLogExist(const char* LogName);
 	bool WriteLogEntry(const char* String);
 	bool WriteLogFile(const char* FileName, const char* String);
+	bool WriteLogFile(const char* FolderName, const char* FileName, const char* String);
 }

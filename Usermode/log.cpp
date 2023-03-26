@@ -1,4 +1,5 @@
 #include "log.h"
+#include <filesystem>
 
 std::string logger::InternalGetCurrentDateFormatted(std::string s) {
 	time_t now = time(0);
@@ -13,7 +14,6 @@ std::string logger::InternalGetCurrentDateFormatted(std::string s) {
 }
 
 void logger::CreateLogFile(const char* LogFile) {
-
 
 }
 
@@ -30,6 +30,17 @@ bool logger::WriteLogEntry(const char* String) {
 
 bool logger::WriteLogFile(const char* FileName, const char* String) {
 	std::ofstream ofs(FileName, std::ios_base::out | std::ios_base::app);
+
+	ofs << String << '\n';
+	return true;
+}
+
+bool logger::WriteLogFile(const char* FolderName, const char* FileName, const char* String) {
+	std::string FilePath = (std::string(FolderName) + "\\" + std::string(FileName));
+	std::ofstream ofs(FilePath.c_str(), std::ios_base::out | std::ios_base::app);
+	
+	namespace fs = std::filesystem;
+	fs::create_directories(FolderName);
 
 	ofs << String << '\n';
 	return true;
