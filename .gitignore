@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Usermode/DumpedFunctions
+/Usermode/scripts.txt
+/Usermode/Usermode.vcxproj
