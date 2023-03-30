@@ -1,0 +1,1 @@
+mptypes\sectorcontrol\initplayerserver.sqf

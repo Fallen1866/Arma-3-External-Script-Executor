@@ -1,0 +1,1 @@
+scripts\fn_objectinventoryanimatedclose.sqf

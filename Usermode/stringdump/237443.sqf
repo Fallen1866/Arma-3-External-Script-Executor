@@ -1,0 +1,1 @@
+campaign\missions\exp_m01.tanoa\functions\fn_exp_m01_destroyelectronics.sqf

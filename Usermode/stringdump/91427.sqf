@@ -1,0 +1,1 @@
+campaign_shared\functions\characters\fn_camp_getequipattribute.sqf

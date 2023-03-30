@@ -1,0 +1,1 @@
+diagnostic\fn_diagmacros.sqf

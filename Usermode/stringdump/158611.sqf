@@ -1,0 +1,1 @@
+combatpatrol\objectives\fn_cpobj1taskssetup.sqf

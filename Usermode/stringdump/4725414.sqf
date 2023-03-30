@@ -1,0 +1,1 @@
+mpscenarios\mp_escapefrommalden.malden\onplayerrespawn.sqf

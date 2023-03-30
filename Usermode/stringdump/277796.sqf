@@ -1,0 +1,1 @@
+mpscenarios\mp_escapefromtanoa.tanoa\scripts\limitequipment.sqf

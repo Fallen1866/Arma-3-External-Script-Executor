@@ -1,0 +1,1 @@
+misc\fn_addscriptedeventhandler.sqfc

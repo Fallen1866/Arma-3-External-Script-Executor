@@ -1,0 +1,1 @@
+campaign\missions\center_csat_checkpoints.tanoa\center_csat_checkpoints_checkpointtanoukas.sqf

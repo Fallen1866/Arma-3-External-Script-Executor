@@ -1,0 +1,1 @@
+kb\a_hub\a_hub_104_skirmish_talk_lost_gear_bis_aib.sqf

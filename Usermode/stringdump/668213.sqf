@@ -1,0 +1,1 @@
+systems\scripts\syndikatteam\syndikatteam_removeunitsfrompool.sqf

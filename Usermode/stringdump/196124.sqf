@@ -1,0 +1,1 @@
+if (isNil('IGUI_GEAR_activeFilter')) then { IGUI_GEAR_activeFilter = 0;}; private ['_dummy']; _dummy = [_this,'initDialog'] call compile preprocessFile	'\A3\ui_f\scripts\handleGear.sqf'; _dummy = [_this,'onLoad'] execVM	'\A3\ui_f\scripts\handleGear.sqf'; _dummy;

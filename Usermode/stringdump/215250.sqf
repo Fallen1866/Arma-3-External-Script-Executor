@@ -1,0 +1,1 @@
+challenges\firing_drills\sp_fd14.stratis\plasma_impact.sqf

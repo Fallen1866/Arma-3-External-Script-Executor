@@ -11,13 +11,15 @@ class VariableDumper : public MenuTab {
 	bool ExcludeBIS = true;
 	char InputSearchBuffer[256] = {};
 	TextEditor SQFCodeEditor;
+
+	// Restoring.
 	std::pair<std::string, UINT64> CopiedPtr = { "",0 };
-	std::pair<std::string, UINT64> RestorePtr = { "",0 };
+	std::unordered_map<std::string, UINT64> RestorePtrs = {};
 
 public:
 
-	std::vector<GameValue*> GetMissionVariables();
-	std::vector<GameValue*> GetObjectVariables(UINT64 Object);	// Do later.
+	std::vector<GameValue> GetMissionVariables();
+	std::vector<GameValue> GetObjectVariables(UINT64 Object);	// Do later.
 
 	// we need ui variables too, cause some servers are cringe :o
 	// pub-variables too, cause they also cringe.

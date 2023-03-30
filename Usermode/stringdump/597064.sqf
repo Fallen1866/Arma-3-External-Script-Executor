@@ -1,0 +1,1 @@
+campaign_2\missions\to_c02m01.malden\missionconversations.sqf

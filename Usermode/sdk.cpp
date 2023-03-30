@@ -4,6 +4,7 @@
 #include "sqf.h"
 #include "executor.h"
 #include "vardumper.h"
+#include "server.h"
 
 SDKComponent* SDK = new SDKComponent();
 
@@ -33,6 +34,7 @@ bool SDKComponent::InitComps() {
 	ScheduleManager->Init(SDK->GetSchedulerEntry());
 	SQFInterface->Init();
 	VariableManager->Init(SDK->GetMissionNamespace());
+	//ServerInfo->Init();
 
 	return true;
 }

@@ -1,0 +1,1 @@
+campaign\missions\c_georgetown.tanoa\c_georgetown_layerblacklist.sqf

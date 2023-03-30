@@ -1,0 +1,1 @@
+mptypes\gamemaster\initserver.sqf

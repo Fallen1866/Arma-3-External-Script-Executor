@@ -37,14 +37,15 @@ class ScheduleComponent : public MenuTab {
 
 	TextEditor SQFCodeEditor;
 
+	bool DumpRunningScripts = true;
 
 public:
-	void Update();
 
 	std::vector<ScriptVM*> GetAllScripts();
 
 	bool KillAllScripts();
 
+	void Update() override;
 	void Init(UINT64 Base) { 
 		m_Base = Base; 
 		

@@ -78,6 +78,9 @@
     <Filter Include="Source Files\variables">
       <UniqueIdentifier>{18e72f5c-93f9-497b-a29c-32846295293d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\server">
+      <UniqueIdentifier>{a2121f11-280f-43f3-8aa8-b5eaa96a90d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Usermode.cpp">
@@ -163,6 +166,9 @@
     </ClCompile>
     <ClCompile Include="variable.cpp">
       <Filter>Header Files\variables</Filter>
+    </ClCompile>
+    <ClCompile Include="server.cpp">
+      <Filter>Source Files\server</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -255,6 +261,9 @@
     </ClInclude>
     <ClInclude Include="vardumper.h">
       <Filter>Source Files\variables</Filter>
+    </ClInclude>
+    <ClInclude Include="server.h">
+      <Filter>Source Files\server</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

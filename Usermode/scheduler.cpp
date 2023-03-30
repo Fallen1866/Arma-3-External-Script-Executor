@@ -2,10 +2,6 @@
 
 ScheduleComponent* ScheduleManager = new ScheduleComponent(1);
 
-void ScheduleComponent::Update() {
-	printf("update ran \n");
-}
-
 auto ScheduleComponent::GetAllScripts() -> std::vector<ScriptVM*> {
 	auto ScriptList = GAutoArray(m_Base);
 
@@ -31,6 +27,11 @@ bool ScheduleComponent::KillAllScripts() {
 			return false;
 
 	return true;
+}
+
+
+void ScheduleComponent::Update() {
+	
 }
 
 void ScheduleComponent::RenderMenu() {

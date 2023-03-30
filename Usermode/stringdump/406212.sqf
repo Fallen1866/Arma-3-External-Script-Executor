@@ -1,0 +1,1 @@
+systems\scripts\medicine\fn_om_infectedgrouphandle.sqf

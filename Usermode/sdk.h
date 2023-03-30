@@ -22,7 +22,6 @@ public:
 
 	bool InitSDK();
 	bool InitComps();
-	bool InitMenus();
 
 	~SDKComponent() {}
 	SDKComponent() {}

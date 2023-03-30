@@ -1,0 +1,1 @@
+a3\modules_f_curator\curator\functions\fn_moduleCuratorSetCostsDefault.sqf

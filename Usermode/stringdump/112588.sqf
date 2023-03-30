@@ -1,0 +1,1 @@
+simpleobjects\fn_createsimpleobject.sqf

@@ -1,0 +1,1 @@
+curatorchallenges\fn_curatorchallengeilluminate.sqf

@@ -1,0 +1,1 @@
+campaign_shared\skirmishes\pois\poi_immobilearmor_02.sqf

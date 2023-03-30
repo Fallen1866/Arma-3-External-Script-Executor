@@ -1,7 +1,7 @@
 #include "variable.h"
 
 UINT64 GameValue::GetValueEntry() {
-	return coms->Read<UINT64>((UINT64)this + 0x18);
+	return coms->Read<UINT64>((UINT64)m_Base + 0x18);
 }
 
 VariableType GameValue::GetVariableType() {
@@ -43,7 +43,7 @@ VariableType GameValue::GetVariableType() {
 }
 
 std::string GameValue::GetVariableName() {
-	return GArmaString((UINT64)this + 0x08).Get();
+	return GArmaString((UINT64)m_Base + 0x08).Get();
 }
 
 
@@ -52,7 +52,7 @@ UINT64 GameValue::GetValuePtr() {
 }
 
 void GameValue::SetValuePtr(UINT64 Value) {
-	coms->Write<UINT64>((UINT64)this + 0x18, Value);
+	coms->Write<UINT64>((UINT64)m_Base + 0x18, Value);
 }
 
 // VARIABLE TYPES ---
@@ -63,7 +63,7 @@ std::vector<GameValue*> VariableArray::GetContents() {
 	auto Buffer = std::vector<GameValue*>();
 
 	for (int i = 0; i < Elements.GetSize(); i++) {
-		Buffer.push_back(Elements.GetClass<GameValue*>(i, 0x10));
+		//Buffer.push_back(Elements.GetClass<UINT64>(i, 0x10));
 	}
 
 	return Buffer;

@@ -1,0 +1,1 @@
+a3\modules_f_curator\respawn\functions\fn_moduleRespawnPosition.sqf

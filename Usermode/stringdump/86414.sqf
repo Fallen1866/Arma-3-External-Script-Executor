@@ -1,0 +1,1 @@
+animation\curve\richcurve\fn_richcurve_getcurvevaluevector.sqf

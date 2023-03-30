@@ -1,0 +1,1 @@
+systems\scripts\smartmarkers\smartmarkers_init.sqf

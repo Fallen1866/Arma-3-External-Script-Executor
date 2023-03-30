@@ -1,0 +1,1 @@
+systems\scripts\fasttravel\fn_om_modulefasttravel.sqf

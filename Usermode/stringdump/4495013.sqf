@@ -1,0 +1,1 @@
+campaign\missions\dutch_s_syn.tanoa\dutch_s_syn_layerblacklist.sqf

@@ -1,0 +1,1 @@
+scripts\gui\rscdisplaycampaignmp.sqfc

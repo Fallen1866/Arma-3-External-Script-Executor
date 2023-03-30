@@ -1,0 +1,1 @@
+strategic\fn_strategicmapopen_keydown.sqfc

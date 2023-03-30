@@ -1,0 +1,1 @@
+campaign\missions\nw_csat.tanoa\nw_csat_layerblacklist.sqf

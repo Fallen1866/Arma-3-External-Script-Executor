@@ -1,0 +1,1 @@
+respawn\fn_getrespawnmarkers.sqfc

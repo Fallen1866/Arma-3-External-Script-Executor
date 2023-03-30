@@ -24,6 +24,7 @@ public:
 	virtual const char* GetTitle() { return "INV"; }
 	virtual void RenderMenu() {}
 
+	virtual void Update() {}
 	virtual void Init() {
 		TabManager::RegisterTab(this);
 	}

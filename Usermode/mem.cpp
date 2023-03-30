@@ -80,7 +80,7 @@ UINT64 UsermodeInterface::InternalGetModuleBase(const char* ModuleName) {
 
 	if (hSnap == INVALID_HANDLE_VALUE) {
 		CloseHandle(hSnap);
-		return -1;
+		return 0;
 	}
 
 	MODULEENTRY32 me32;

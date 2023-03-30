@@ -32,11 +32,25 @@ enum class VariableType : int {
 };
 
 class GameValue {
+private:
+    UINT64 m_Base;
+
 protected:
     UINT64 GetValueEntry();
 
+
+
 public:
+    VariableType Type;
+    std::string Name;
+
 	// Get shit
+    void init(UINT64 Base) {
+        m_Base = Base;
+        Type = GetVariableType();
+        Name = GetVariableName();
+    }
+
     VariableType GetVariableType();
 	std::string GetVariableName();
 

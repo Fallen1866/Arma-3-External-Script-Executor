@@ -1,0 +1,1 @@
+ambient\fn_ambientanimgetparams.sqf

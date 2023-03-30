@@ -1,0 +1,1 @@
+campaign\missions\bala_sw_civ.tanoa\bala_sw_civ_bis_sec_koumacoutbreak.sqf

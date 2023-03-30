@@ -1,0 +1,1 @@
+campaign\missions\se_civ.tanoa\se_civ_bis_sc_bananaworkers.sqf

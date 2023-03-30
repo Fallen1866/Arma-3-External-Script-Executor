@@ -1,0 +1,1 @@
+briefing\fn_briefinginit.sqfc
