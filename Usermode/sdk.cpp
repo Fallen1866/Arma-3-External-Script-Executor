@@ -5,6 +5,7 @@
 #include "executor.h"
 #include "vardumper.h"
 #include "server.h"
+#include "config.h"
 
 SDKComponent* SDK = new SDKComponent();
 
@@ -15,6 +16,7 @@ void SDKComponent::DebugInfo() {
 	LogInfo("Scheduler  \t-> 0x%llx \n", SDK->GetSchedulerEntry());
 	LogInfo("CameraOn	\t-> 0x%llx \n", SDK->GetCameraOn());
 	LogInfo("MissionNS  \t-> 0x%llx \n", SDK->GetMissionNamespace());
+	LogInfo("MissionMgr \t-> 0x%llx \n", SDK->GetMissionManager());
 }
 
 bool SDKComponent::InitSDK() {
@@ -24,6 +26,7 @@ bool SDKComponent::InitSDK() {
 	m_Scheduler			= m_World + 0x1858;
 	m_CameraOn			= coms->Read<UINT64>(coms->Read<UINT64>(m_World + 0x2B00) + 0x8);
 	m_MissionNamespace	= coms->Read<UINT64>(m_World + 0x1630);
+	m_MissionManager	= coms->Read<UINT64>(m_Modbase + 0x2561C50);
 
 	return m_Modbase;
 } 
@@ -34,6 +37,7 @@ bool SDKComponent::InitComps() {
 	ScheduleManager->Init(SDK->GetSchedulerEntry());
 	SQFInterface->Init();
 	VariableManager->Init(SDK->GetMissionNamespace());
+	ConfigManager->Init(SDK->GetMissionManager());
 	//ServerInfo->Init();
 
 	return true;

@@ -9,6 +9,7 @@ private:
 	UINT64 m_Scheduler = 0;
 	UINT64 m_CameraOn = 0;
 	UINT64 m_MissionNamespace = 0;
+	UINT64 m_MissionManager = 0;
 
 public:
 	UINT64 GetModuleBase()			const { return m_Modbase; }
@@ -17,6 +18,7 @@ public:
 	UINT64 GetSchedulerEntry()		const { return m_Scheduler; }
 	UINT64 GetCameraOn()			const { return m_CameraOn; }
 	UINT64 GetMissionNamespace()	const { return m_MissionNamespace; }
+	UINT64 GetMissionManager()		const { return m_MissionManager; }
 
 	void DebugInfo();
 

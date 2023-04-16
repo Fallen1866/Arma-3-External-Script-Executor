@@ -81,6 +81,12 @@
     <Filter Include="Source Files\server">
       <UniqueIdentifier>{a2121f11-280f-43f3-8aa8-b5eaa96a90d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\onFrame">
+      <UniqueIdentifier>{021c6d44-ccd2-4ef3-9b05-f8ab318dbafe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\config">
+      <UniqueIdentifier>{41201246-26ae-41af-bc54-009272a4baae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Usermode.cpp">
@@ -169,6 +175,9 @@
     </ClCompile>
     <ClCompile Include="server.cpp">
       <Filter>Source Files\server</Filter>
+    </ClCompile>
+    <ClCompile Include="config.cpp">
+      <Filter>Source Files\config</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -264,6 +273,9 @@
     </ClInclude>
     <ClInclude Include="server.h">
       <Filter>Source Files\server</Filter>
+    </ClInclude>
+    <ClInclude Include="config.h">
+      <Filter>Source Files\config</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
