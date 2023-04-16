@@ -95,6 +95,10 @@ public:
 	void Init(UINT64 Base) {
 		m_Base = Base;
 
+		//
+		// we could put GetMissionSQM() here
+		// 
+
 		MenuTab::Init();
 	}
 	void RenderMenu() override;
