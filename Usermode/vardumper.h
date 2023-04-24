@@ -13,7 +13,7 @@ class VariableDumper : public MenuTab {
 	TextEditor SQFCodeEditor;
 
 	// Restoring.
-	std::pair<std::string, UINT64> CopiedPtr = { "",0 };
+	std::pair<std::string, UINT64> CopiedPtr = { "", 0 };
 	std::unordered_map<std::string, UINT64> RestorePtrs = {};
 
 public:

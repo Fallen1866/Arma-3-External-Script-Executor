@@ -85,7 +85,7 @@
       <UniqueIdentifier>{021c6d44-ccd2-4ef3-9b05-f8ab318dbafe}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\config">
-      <UniqueIdentifier>{41201246-26ae-41af-bc54-009272a4baae}</UniqueIdentifier>
+      <UniqueIdentifier>{98ecdb66-4598-4daa-a897-54be906727d4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +175,9 @@
     </ClCompile>
     <ClCompile Include="server.cpp">
       <Filter>Source Files\server</Filter>
+    </ClCompile>
+    <ClCompile Include="onEachFrame.cpp">
+      <Filter>Source Files\onFrame</Filter>
     </ClCompile>
     <ClCompile Include="config.cpp">
       <Filter>Source Files\config</Filter>
@@ -273,6 +276,9 @@
     </ClInclude>
     <ClInclude Include="server.h">
       <Filter>Source Files\server</Filter>
+    </ClInclude>
+    <ClInclude Include="onEachFrame.h">
+      <Filter>Source Files\onFrame</Filter>
     </ClInclude>
     <ClInclude Include="config.h">
       <Filter>Source Files\config</Filter>

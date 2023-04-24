@@ -10,7 +10,7 @@
 #define USERMODE 0
 #define KERNEL   1
 
-#define TYPE USERMODE
+#define TYPE KERNEL
 
 #if TYPE
 

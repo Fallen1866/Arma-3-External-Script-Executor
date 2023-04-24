@@ -7,7 +7,7 @@ UINT64 ConfigComponent::GetNewDescriptionExt() {
 }
 
 ParamClass ConfigComponent::GetMissionSQM() {
-	//							doing it like this cause thats what arma dose (will be easier to understand if anything breaks)
+	// doing it like this cause thats what arma dose (will be easier to understand if anything breaks)
 	//																	v		v
 	ParamClass MissionSQM(coms->Read<UINT64>(GetNewDescriptionExt() + 0x18 + 0xF8));
 	MissionSQM.ReadName();

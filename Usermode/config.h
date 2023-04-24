@@ -88,6 +88,8 @@ private:
 
 	UINT64		GetNewDescriptionExt();
 	ParamClass	GetMissionSQM();
+	
+	
 
 public:
 
