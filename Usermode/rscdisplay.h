@@ -1,6 +1,7 @@
 #pragma once
 #include "includes.h"
 #include "structs.h"
+#include <unordered_map>
 
 class RscDisplay;
 class RscDisplayTrait;
@@ -42,6 +43,11 @@ private:
 	bool CacheOverwrittenOnLoad(SIZE_T size = 0x0);
 	bool CacheOverwrittenOnUnLoad(SIZE_T size = 0x0);
 
+private:
+
+	bool PlacePayload(std::string TargetTrait, std::string Payload);
+	bool RemovePayload(std::string TargetTrait);
+
 public:
 
 	std::vector<std::string> GetAllTraitNames();
@@ -52,6 +58,9 @@ public:
 	
 	bool PlacePayloadOnLoad(std::string Payload);
 	bool RemovePayloadOnLoad();
+
+	bool PlacePayloadUnload(std::string Payload);
+	bool RemovePayloadUnLoad();
 
 
 	// Debugs and shit.

@@ -5,7 +5,7 @@
 #include <TlHelp32.h>
 #include <iostream>
 #include <Windows.h>
-#pragma comment(lib, "onecore.lib")
+//#pragma comment(lib, "onecore.lib")
 
 #define USERMODE 0
 #define KERNEL   1

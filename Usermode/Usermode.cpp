@@ -8,23 +8,6 @@
 #include "eventhandler.h"
 #include "vardumper.h"
 
-// To Do:
-// - SQF Functions
-//		- get SQF Functions.
-//		- get BinaryOperator for SQF Functions
-//
-//	- Eventhandlers
-//		- Get Multiplayer Eventhandler
-//		- Get Unit EventHandlers
-//		- Get UI EventHandlers
-//
-//		- Get All Displays?
-//	- Displays
-//	
-//	- GTA
-//		- gta_fnc_createVehicle ??
-//		- 
-
 void UpdateThread() {
 	while (MenuWindow->m_Running) {
 		for (auto Tab : TabManager::m_Tabs)

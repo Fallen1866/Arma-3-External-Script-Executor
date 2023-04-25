@@ -1,4 +1,6 @@
 #include "executor.h"
+#include "vardumper.h"
+#include "sdk.h"
 
 ExecutorComponent* Executor = new ExecutorComponent(0);
 
@@ -29,6 +31,39 @@ bool ExecutorComponent::RemoveScript() {
 	return Result;
 }
 
+bool ExecutorComponent::CheckIfPayloadExecuted() {
+	while (true) {
+		if (!Executor->m_ScriptInjected)
+			return true;
+		
+		// do shit.
+		auto GameVariables = VariableManager->GetMissionVariables();
+		
+		for (auto& Variable : GameVariables) {
+			auto VariableName = Variable.Name;
+
+
+			if (!VariableName.compare("bred_inject")) {	// do shit with hashmap, way faster.
+				
+				if (VariableBool* BoolValue = (VariableBool*)(&Variable); BoolValue->GetValue()) {
+					Executor->RemoveScript();
+					BoolValue->SetValue(false);
+					return true;
+				}
+			}
+		}
+		
+		Sleep(1);
+	}
+
+	return true;
+}
+
+bool ExecutorComponent::SaveFile() {
+	
+	return true;
+}
+
 bool ExecutorComponent::PlaceScript() {
 	return PlaceScript(GetScriptFromFile().c_str());
 }
@@ -45,9 +80,24 @@ void ExecutorComponent::RenderMenu() {
 
 	ImGui::Text("TargetDisplay: %s", TARGETDISPLAY);
 
-	if (ImGui::Button("Inject Script")) {
-		if(!m_ScriptInjected)
-			PlaceScript();
+	if (ImGui::Button("Inject Script") || GetAsyncKeyState(VK_HOME)) {
+		if (!m_ScriptInjected) {
+			// haram double code >:(
+			std::ofstream f(TARGETFILE);
+
+			if (f.good()) {
+				f << SQFCodeEditor.GetText();
+			}
+
+			f.close();
+
+			if (PlaceScript())
+				CreateThread(0, 0, (LPTHREAD_START_ROUTINE)CheckIfPayloadExecuted, 0, 0, 0);
+		
+			mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
+			Sleep(1);
+			mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+		}
 		else
 			LogFailure("Tried to place script onto existing script \n");
 	}
@@ -72,6 +122,10 @@ void ExecutorComponent::RenderMenu() {
 		
 		f.close();
 	}
+
+	ImGui::SameLine();
+
+	ImGui::Checkbox("Auto Uninject", &m_AutoUninject);
 
 	ImGui::Separator();
 

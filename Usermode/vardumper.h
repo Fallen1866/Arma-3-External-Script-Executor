@@ -9,6 +9,7 @@ class VariableDumper : public MenuTab {
 	
 	// MENU
 	bool ExcludeBIS = true;
+	
 	char InputSearchBuffer[256] = {};
 	TextEditor SQFCodeEditor;
 

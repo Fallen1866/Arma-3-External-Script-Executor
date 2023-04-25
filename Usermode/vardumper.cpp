@@ -32,6 +32,29 @@ std::vector<GameValue> VariableDumper::GetMissionVariables() {
 	return Buffer;
 }
 
+std::vector<GameValue> VariableDumper::GetObjectVariables(UINT64 Object) {
+	GAutoArray NamespaceContainer = GAutoArray(Object + 0x718);
+
+	if (NamespaceContainer.InvalidList())
+		return {};
+
+	auto Buffer = std::vector<GameValue>();
+
+	for (auto i = 0; i < NamespaceContainer.GetSize(); i++) {
+		auto VariableContainers = NamespaceContainer.GetClass<GAutoArray>(i, 0x18);
+
+		for (auto j = 0; j < VariableContainers.GetSize(); j++) {
+			auto GameVariable = VariableContainers.GetClass<UINT64>(i, 0x28);
+
+			auto Value = GameValue();
+			Value.init(GameVariable);
+
+			Buffer.push_back(Value);
+		}
+	}
+
+	return Buffer;
+}
 
 void VariableDumper::RenderMenu() {
 	static auto Variables = std::vector<GameValue>(); //GetMissionVariables();

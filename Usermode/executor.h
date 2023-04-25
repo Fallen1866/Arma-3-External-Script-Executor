@@ -9,7 +9,10 @@
 
 class ExecutorComponent : public MenuTab {
 	bool m_ScriptInjected = false;
-	
+public:
+	bool m_AutoUninject = false;
+private:
+
 	TextEditor SQFCodeEditor;
 	bool SQFCodeEditorOpen;
 
@@ -21,6 +24,11 @@ public:
 	bool PlaceScript();
 	bool RemoveScript();
 
+private:
+
+	static bool CheckIfPayloadExecuted();
+	bool SaveFile();
+
 public:
 	const char* GetTitle() override { return "EXEC"; }
 	void RenderMenu() override;
@@ -28,6 +36,7 @@ public:
 	void Init() override {
 		// Load Current File
 		std::ifstream t(TARGETFILE);
+		
 		if (t.good()) {
 			std::string str((std::istreambuf_iterator<char>(t)), std::istreambuf_iterator<char>());
 			SQFCodeEditor.SetText(str);
