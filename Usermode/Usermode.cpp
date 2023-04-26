@@ -33,14 +33,48 @@ void RemoveScriptRestrictions() {
 	}
 }
 
-int main() {
+bool isRunningAsAdmin()
+{
+	BOOL bIsAdmin = FALSE;
+	PSID pAdminSid = NULL;
+
+	// Allocate and initialize the SID for the Administrators group
+	SID_IDENTIFIER_AUTHORITY NtAuthority = SECURITY_NT_AUTHORITY;
+	if (!AllocateAndInitializeSid(&NtAuthority, 2, SECURITY_BUILTIN_DOMAIN_RID, DOMAIN_ALIAS_RID_ADMINS, 0, 0, 0, 0, 0, 0, &pAdminSid))
+	{
+		return false;
+	}
+
+	// Check if the current process token is a member of the Administrators group
+	if (!CheckTokenMembership(NULL, pAdminSid, &bIsAdmin))
+	{
+		bIsAdmin = FALSE;
+	}
+
+	// Free the SID
+	FreeSid(pAdminSid);
+
+	return bIsAdmin != FALSE;
+}
+
+int main() 
+{
+	if (!isRunningAsAdmin())
+	{
+		LogFailure("Run as admin \n");
+		system("pause");
+		return -1;
+	}
+
 	if (!coms->SetupInterface("arma3_x64.exe")) {
 		LogFailure("Failed to setup interface \n");
+		system("pause");
 		return -1;
 	}
 
 	if (!SDK->InitSDK()) {
 		LogFailure("Failed to setup SDK \n");
+		system("pause");
 		return -2;
 	}
 
@@ -50,11 +84,16 @@ int main() {
 
 	if (!SDK->InitComps()) {
 		LogFailure("Failed to setup Components \n");
+		system("pause");
 		return -3;
 	}
 
 	if (!MenuWindow->StartWindow())
+	{
 		LogFailure("Failed to create window\n");
+		system("pause");
+		return -4;
+	}
 
 	LogSuccess("Successfully setup window\n");
 
