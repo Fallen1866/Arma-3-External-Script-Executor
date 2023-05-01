@@ -16,12 +16,12 @@ private:
 	TextEditor SQFCodeEditor;
 	bool SQFCodeEditorOpen;
 
-	bool PlaceScript(std::string Script);
 public:
+	bool PlaceScriptFromString(std::string Script);
 	bool IsScriptInjected();
 	std::string GetScriptFromFile();
 
-	bool PlaceScript();
+	bool PlaceScriptFromFile();
 	bool RemoveScript();
 
 private:

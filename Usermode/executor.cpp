@@ -16,13 +16,16 @@ std::string ExecutorComponent::GetScriptFromFile() {
 	return buffer.str();
 }
 
-bool ExecutorComponent::PlaceScript(std::string Script) {
+bool ExecutorComponent::PlaceScriptFromString(std::string Script) {
 	auto* GameOptionDisplay = RscDisplayManager->GetDisplayFromName(TARGETDISPLAY);
 
 	if (!GameOptionDisplay->PlacePayloadOnLoad(Script.c_str()))
+	{
 		return false;
+	}
 
 	m_ScriptInjected = true;
+
 	return true;
 }
 
@@ -64,8 +67,8 @@ bool ExecutorComponent::SaveFile() {
 	return true;
 }
 
-bool ExecutorComponent::PlaceScript() {
-	return PlaceScript(GetScriptFromFile().c_str());
+bool ExecutorComponent::PlaceScriptFromFile() {
+	return PlaceScriptFromString(GetScriptFromFile().c_str());
 }
 
 void ShowConsole(bool show)
@@ -102,14 +105,6 @@ void ExecutorComponent::RenderMenu() {
 		alreadyCheckedGamepath = true;
 	}
 
-	static bool consolestatus = true;
-
-	if (ImGui::Button("Toggle Console"))
-	{
-		consolestatus = !consolestatus;
-		ShowConsole(consolestatus);
-	}
-
 	if (gamepath.empty())
 	{
 		static char arma3_x64_path[256];
@@ -141,20 +136,10 @@ void ExecutorComponent::RenderMenu() {
 
 		ImGui::SameLine();
 
-		ImGui::Text("TargetDisplay: %s", TARGETDISPLAY);
-
-		if (m_AutoUninject && GetAsyncKeyState(VK_HOME))
+		if (GetAsyncKeyState(VK_NUMLOCK) && !SQFCodeEditor.GetText().empty())
 		{
-			if (!m_ScriptInjected) {
-				// haram double code >:(
-				std::ofstream f(TARGETFILE);
-
-				if (f.good()) {
-					f << SQFCodeEditor.GetText();
-				}
-
-				f.close();
-
+			if (!m_ScriptInjected) 
+			{
 				// Add inbound rule
 				std::string addRuleInCmd = "netsh advfirewall firewall add rule name=\"UCLagSwitch\" dir=in action=block program=\"" + gamepath + "\" enable=yes";
 				system(addRuleInCmd.c_str());
@@ -167,24 +152,28 @@ void ExecutorComponent::RenderMenu() {
 				Beep(500, 100);
 				std::cout << "Firewall rules added" << std::endl;
 
-				Sleep(1500);
-
-				PlaceScript();
-
-				Sleep(300);
-
-				mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
-				Sleep(1);
-				mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
-
-				Sleep(300);
-
-				if (m_ScriptInjected)
+				if (m_AutoUninject)
 				{
-					RemoveScript();
-				}
+					Sleep(2500);
 
-				Sleep(1500);
+					PlaceScriptFromString(SQFCodeEditor.GetText());
+
+					Sleep(1);
+
+					mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
+					Sleep(1);
+					mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+
+					Sleep(100);
+
+					RemoveScript();
+
+					Sleep(2500);
+				}
+				else
+				{
+					Sleep(5000);
+				}
 
 				// Delete rule
 				std::string deleteRuleCmd = "netsh advfirewall firewall delete rule name=\"UCLagSwitch\" program=\"" + gamepath + "\"";
@@ -198,38 +187,17 @@ void ExecutorComponent::RenderMenu() {
 				LogFailure("Tried to place script onto existing script \n");
 		}
 
-		if (ImGui::Button("Inject Script")) {
-			if (!m_ScriptInjected) {
-				// haram double code >:(
-				std::ofstream f(TARGETFILE);
-
-				if (f.good()) {
-					f << SQFCodeEditor.GetText();
-				}
-
-				f.close();
-
-				if (PlaceScript())
-				{
-
-				}
-			}
-			else
-				LogFailure("Tried to place script onto existing script \n");
-		}
+		ImGui::Checkbox("Inject On VK_NUMLOCK", &m_AutoUninject);
 
 		ImGui::SameLine();
 
-		if (ImGui::Button("Remove Script")) {
-			if (m_ScriptInjected)
-				RemoveScript();
-			else
-				LogFailure("Tried to remove non-existing script \n");
+		static bool consolestatus = true;
+
+		if (ImGui::Button("Toggle Console"))
+		{
+			consolestatus = !consolestatus;
+			ShowConsole(consolestatus);
 		}
-
-		ImGui::SameLine();
-
-		ImGui::Checkbox("Auto Uninject", &m_AutoUninject);
 
 		ImGui::Separator();
 

@@ -146,8 +146,6 @@ void RscDisplay::Init(UINT64 Base) {
 
 
 bool RscDisplay::PlacePayloadOnLoad(std::string Payload) {
-	//Payload = "; BRED_INJECT = true;" + Payload;
-
 	auto* OnLoad = &m_Traits[std::string("onLoad")];
 
 	if (!CachePayloadOnLoad()) {
