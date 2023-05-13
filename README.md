@@ -27,6 +27,7 @@ This tool has the power to do following:
 With the current system, you're able to hook SQF functions by placing a new hooked function and changing the pointer.
 
 Example - Next Level Gaming.
+
 ![billede](https://github.com/Fallen1866/Arma-3-External-Script-Executor/assets/88215542/6aeb3bc0-0f03-49be-933f-b38623ecabed)
 
 This will cause the function call at NLG_FNC_LOGSEND to execute our NLG_FNC_LOGSEND_HK, and not the original.
