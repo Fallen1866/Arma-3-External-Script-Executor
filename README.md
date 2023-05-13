@@ -28,7 +28,8 @@ With the current system, you're able to hook SQF functions by placing a new hook
 
 Example - Next Level Gaming.
 
-![billede](https://github.com/Fallen1866/Arma-3-External-Script-Executor/assets/88215542/6aeb3bc0-0f03-49be-933f-b38623ecabed)
+![billede](https://github.com/Fallen1866/Arma-3-External-Script-Executor/assets/88215542/83e56bae-f7d7-46c8-a445-63bc78cc3656)
+
 
 This will cause the function call at NLG_FNC_LOGSEND to execute our NLG_FNC_LOGSEND_HK, and not the original.
 This also allows for changing compileFinaled variables such as admin levels or donator levels.
