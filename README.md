@@ -28,7 +28,7 @@ With the current system, you're able to hook SQF functions by placing a new hook
 
 Example - Next Level Gaming.
 
-![billede](https://github.com/Fallen1866/Arma-3-External-Script-Executor/assets/88215542/83e56bae-f7d7-46c8-a445-63bc78cc3656)
+![billede](https://github.com/Fallen1866/Arma-3-External-Script-Executor/assets/88215542/30abe465-86f6-4589-a7d6-d5a6d1e45a4f)
 
 
 This will cause the function call at NLG_FNC_LOGSEND to execute our NLG_FNC_LOGSEND_HK, and not the original.
